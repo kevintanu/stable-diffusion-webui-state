@@ -31,7 +31,7 @@ state.extensions['aspect-ratio'] = (function () {
         setTimeout(function () {
             handleSelects();
             console.log('Aspect Ratio extension loaded');
-        }, 8000);
+        }, 10000);
     }
 
     function init() {
