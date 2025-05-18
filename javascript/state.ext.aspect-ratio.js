@@ -3,28 +3,38 @@ window.state.extensions = window.state.extensions || {};
 state = window.state;
 
 state.extensions['aspect-ratio'] = (function () {
-    let container = null;
+    let containers = [];
     let store = null;
 
-    function handleSelect() {
-        let id = `ar-select`;
-        let value = store.get(id);
-        if (value) {
-            container.value = value;
-        }
-        container.addEventListener('change', function () {
-            store.set(id, this.value);
-        });
+    function handleSelects() {
+        const app = gradioApp()
+        const txt2img = app.getElementById("txt2img_select_aspect_ratio");
+        const img2img = app.getElementById("img2img_select_aspect_ratio");
+
+        containers.push({container: txt2img, name: 'txt2img'});
+        containers.push({container: img2img, name: 'img2img'});
+        
+        containers.forEach(function ({container, name}) {
+            let id = `ar-${name}`;
+            let value = store.get(id);
+            if (value) {
+                container.value = value;
+            }
+
+            container.addEventListener('change', function () {
+                store.set(id, this.value);
+            });
+        })
     }
 
     function load() {
         setTimeout(function () {
-            handleSelect();
-        }, 2000);
+            handleSelects();
+            console.log('Aspect Ratio extension loaded');
+        }, 4000);
     }
 
     function init() {
-        container = gradioApp().getElementById("txt2img_select_aspect_ratio");
         store = new state.Store('ext-aspect-ratio');
 
         load();
