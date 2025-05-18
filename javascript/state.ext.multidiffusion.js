@@ -113,7 +113,7 @@ state.extensions['multidiffusion'] = (function () {
             }
             if (spanTags[i].textContent == 'Tiled VAE') {
                 containers.push({container: spanTags[i].parentElement.parentElement,name: 'vae'});
-                break;
+                // break;
             }
         };
 

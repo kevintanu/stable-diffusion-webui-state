@@ -87,7 +87,8 @@ def on_ui_settings():
             "control-net",
             "adetailer",
             "multidiffusion",
-            "dynamic prompting"
+            "dynamic prompting",
+            "aspect-ratio"
         ]
     }, section=section))
 
